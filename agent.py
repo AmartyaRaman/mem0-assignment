@@ -25,6 +25,9 @@ class IntentClassification(BaseModel):
 class VoiceAgent:
     def __init__(self, provider: str = "OpenAI", api_key: Optional[str] = None):
         self.provider = provider
+        # Sanitize API key (remove non-ASCII and whitespace)
+        if api_key:
+            api_key = api_key.strip().encode('ascii', 'ignore').decode('ascii')
         self.api_key = api_key
         
         if provider == "OpenAI":

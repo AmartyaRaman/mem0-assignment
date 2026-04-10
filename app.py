@@ -73,11 +73,23 @@ with st.sidebar:
         "Enter Key", 
         value=st.session_state['confirmed_api_key'], 
         type="password", 
-        label_visibility="collapsed"
+        label_visibility="collapsed",
+        key="api_key_input"
     )
     
-    if not st.session_state['confirmed_api_key']:
-        st.warning("Press the enter key after filling the API key.")
+    # Update confirmed key immediately and sanitize (remove emojis/whitespace)
+    st.session_state['confirmed_api_key'] = temp_key.strip().encode('ascii', 'ignore').decode('ascii')
+
+    # Conditional CSS to highlight input field green when it has a value
+    if temp_key:
+        st.markdown("""
+            <style>
+            [data-testid="stSidebar"] [data-testid="stTextInput"] div[data-baseweb="input"] {
+                border-color: #28a745 !important;
+                box-shadow: 0 0 0 1px #28a745 !important;
+            }
+            </style>
+        """, unsafe_allow_html=True)
     
     st.divider()
     st.markdown("### System Info")
