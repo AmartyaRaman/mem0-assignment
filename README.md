@@ -19,9 +19,7 @@ A premium Streamlit-based AI agent that control your local filesystem using voic
    ```
 
 2. **API Key Configuration**:
-   - Create a `.env` file from the `.env.example`.
-   - Add your `OPENAI_API_KEY`.
-   - Alternatively, you can enter the key directly in the application sidebar.
+   - You can enter the key directly in the application sidebar.
 
 3. **Run the Application**:
    ```bash
